@@ -102,7 +102,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: cat jump cycle spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 364
+        width: 638
+        height: 389
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f454b877d4d71a541853aae0ecd4905f
+      internalID: -280192315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat jump cycle spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 2511
+        y: 364
+        width: 559
+        height: 628
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 213575d497455794a9892001053c9147
+      internalID: -1029833383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat jump cycle spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 4444
+        y: 587
+        width: 619
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f949fb948c00cc4d92ec13c10506c1f
+      internalID: 195051811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat jump cycle spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 6391
+        y: 435
+        width: 628
+        height: 555
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff4c4fddab8693e4098cb03e0bd1ccc9
+      internalID: -1552136495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat jump cycle spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 8176
+        y: 362
+        width: 720
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e12f6bd3d338d743827922c5647a1f7
+      internalID: -1271752503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -113,7 +218,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cat jump cycle spritesheet_4: -1271752503
+      cat jump cycle spritesheet_2: 195051811
+      cat jump cycle spritesheet_1: -1029833383
+      cat jump cycle spritesheet_3: -1552136495
+      cat jump cycle spritesheet_0: -280192315
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
