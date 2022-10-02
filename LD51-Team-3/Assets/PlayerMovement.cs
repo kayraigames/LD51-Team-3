@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector3(0, 14f, 0);
+            rb.velocity = new Vector2(rb.velocity.x, 14f);
         }
     }
 } 
