@@ -113,7 +113,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (hiding == false)
         {
-            Destroy(this.gameObject);
+            anim.SetTrigger("death");
+          //  Destroy(this.gameObject);
         }
     }
 }
