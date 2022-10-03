@@ -3,31 +3,37 @@ using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     public TextMeshProUGUI scoreText;
     public GameObject scoreTextObj;
+    public TextMeshProUGUI scoreText2;
+    public GameObject scoreTextObj2;
     private Rigidbody2D rb;
-    private BoxCollider2D collide; 
-    private SpriteRenderer sprite; 
+    private BoxCollider2D collide;
+    private SpriteRenderer sprite;
     private Animator anim;
     public GameOver go;
+    private Stopwatch timer2;
     bool dead;
-    [SerializeField] private LayerMask jumpableGround ;
+    [SerializeField] private LayerMask jumpableGround;
     private Stopwatch timer;
     private float dirX = 0f;
-    [SerializeField]private float moveSpeed = 7f; 
-    [SerializeField]private float jumpForce = 14f;
-    
-    private enum MovementState { still, walking, jumping, falling } 
-   
+    [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private float jumpForce = 14f;
+
+    private enum MovementState { still, walking, jumping, falling }
+
     // Start is called before the first frame update
-   private void Start()
+    private void Start()
     {
         scoreText.text = "";
+        scoreText2.text = "";
         rb = GetComponent<Rigidbody2D>();
         collide = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -64,13 +70,17 @@ public class PlayerMovement : MonoBehaviour
                 timer.Start();
             }
         }
+        else if(timer2.Elapsed.Seconds>=5)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void UpdateAnimationState()
     {
-        MovementState state; 
-         if (dirX > 0f)
-        { 
+        MovementState state;
+        if (dirX > 0f)
+        {
             state = MovementState.walking;
             sprite.flipX = false;
         }
@@ -93,12 +103,12 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.falling;
         }
 
-        anim.SetInteger("state", (int)state) ;
+        anim.SetInteger("state", (int)state);
     }
-    
+
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(collide.bounds.center, collide.bounds.size, 0f, Vector2.down, .1f, jumpableGround) ; 
+        return Physics2D.BoxCast(collide.bounds.center, collide.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
 
     }
     public void checkDeath()
@@ -113,23 +123,26 @@ public class PlayerMovement : MonoBehaviour
         Collider2D[] results = new Collider2D[10];
         ContactFilter2D cf = new ContactFilter2D();
         cf.NoFilter();
-        int cols = collide.OverlapCollider(cf, results);  ;
+        int cols = collide.OverlapCollider(cf, results); ;
         bool hiding = false;
         for (int i = 0; i < cols; i++)
         {
-            if (String.Equals(results[i].gameObject.tag,"Hideable"))
+            if (String.Equals(results[i].gameObject.tag, "Hideable"))
             {
                 hiding = true;
             }
         }
         if (hiding == false)
         {
-            anim.SetTrigger("death");
             dead = true;
+            anim.SetTrigger("death");
             go.dead = true;
             scoreText.text = "GAME OVER!";
-            //  Destroy(this.gameObject);
+            timer2 = new Stopwatch();
+            timer2.Start();
+          
+            
         }
+        
     }
 }
-//for title screen, you can use canvas instead of new scene
