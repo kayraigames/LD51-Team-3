@@ -138,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetTrigger("death");
             go.dead = true;
             scoreText.text = "GAME OVER!";
+            scoreText2.text = "Get ready to try again!";
             timer2 = new Stopwatch();
             timer2.Start();
           
