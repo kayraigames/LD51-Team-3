@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D collide; 
     private SpriteRenderer sprite; 
-    private Animator anim; 
-
+    private Animator anim;
+    bool dead;
     [SerializeField] private LayerMask jumpableGround ;
     private Stopwatch timer;
     private float dirX = 0f;
@@ -29,29 +29,34 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         timer = new Stopwatch();
         timer.Start();
+        dead = false;
     }
 
     // Update is called once per frame
     private void Update()
+
     {
-        dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
-
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (dead == false)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
-        UpdateAnimationState();
+            dirX = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
-        if (timer.Elapsed.Seconds >= 10)
-        {
-           // flashed = true;
-            // rb.checkDeath();
-            checkDeath();
-            //rb.velocity= new Vector2(0, 30);
-            // fi.StartFlashLoop(0.5f, 0, 1);
-            timer = new Stopwatch();
-            timer.Start();
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
+            UpdateAnimationState();
+
+            if (timer.Elapsed.Seconds >= 10)
+            {
+                // flashed = true;
+                // rb.checkDeath();
+                checkDeath();
+                //rb.velocity= new Vector2(0, 30);
+                // fi.StartFlashLoop(0.5f, 0, 1);
+                timer = new Stopwatch();
+                timer.Start();
+            }
         }
     }
 
@@ -114,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
         if (hiding == false)
         {
             anim.SetTrigger("death");
+            dead = true;
           //  Destroy(this.gameObject);
         }
     }
