@@ -4,13 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public TextMeshProUGUI scoreText;
+    public GameObject scoreTextObj;
     private Rigidbody2D rb;
     private BoxCollider2D collide; 
     private SpriteRenderer sprite; 
     private Animator anim;
+    public GameOver go;
     bool dead;
     [SerializeField] private LayerMask jumpableGround ;
     private Stopwatch timer;
@@ -23,10 +27,12 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
    private void Start()
     {
+        scoreText.text = "";
         rb = GetComponent<Rigidbody2D>();
         collide = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        go = GetComponent<GameOver>();
         timer = new Stopwatch();
         timer.Start();
         dead = false;
@@ -120,7 +126,9 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetTrigger("death");
             dead = true;
-          //  Destroy(this.gameObject);
+            go.dead = true;
+            scoreText.text = "GAME OVER!";
+            //  Destroy(this.gameObject);
         }
     }
 }
