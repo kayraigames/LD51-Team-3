@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.still;
         }
 
+        if ()
+
         anim.SetInteger("state", )
     }
 } 
