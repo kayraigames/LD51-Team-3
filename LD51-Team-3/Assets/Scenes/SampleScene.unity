@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 991615888}
   - component: {fileID: 991615887}
   - component: {fileID: 991615886}
+  - component: {fileID: 991615890}
   m_Layer: 0
   m_Name: CITY loop
   m_TagString: Untagged
@@ -639,6 +640,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
+--- !u!114 &991615890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991615885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e94f6a5c87779e4b9f66b4852b21f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.5
 --- !u!1 &1172624120
 GameObject:
   m_ObjectHideFlags: 0
