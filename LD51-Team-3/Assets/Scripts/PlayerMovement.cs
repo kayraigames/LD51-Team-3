@@ -1,6 +1,9 @@
+using System;
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite; 
     private Animator anim; 
 
-    [SerializeField] private LayerMask jumpableGround ; 
-
+    [SerializeField] private LayerMask jumpableGround ;
+    private Stopwatch timer;
     private float dirX = 0f;
     [SerializeField]private float moveSpeed = 7f; 
     [SerializeField]private float jumpForce = 14f;
@@ -23,7 +26,9 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         collide = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
+        timer = new Stopwatch();
+        timer.Start();
     }
 
     // Update is called once per frame
@@ -37,6 +42,17 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         UpdateAnimationState();
+
+        if (timer.Elapsed.Seconds >= 10)
+        {
+           // flashed = true;
+            // rb.checkDeath();
+            checkDeath();
+            //rb.velocity= new Vector2(0, 30);
+            // fi.StartFlashLoop(0.5f, 0, 1);
+            timer = new Stopwatch();
+            timer.Start();
+        }
     }
 
     private void UpdateAnimationState()
@@ -74,4 +90,31 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(collide.bounds.center, collide.bounds.size, 0f, Vector2.down, .1f, jumpableGround) ; 
 
     }
-} 
+    public void checkDeath()
+    {
+        //called when flash goes off
+        //check if player collider is overlapping with any collider(doc)
+        //dont use contact filter
+        //ContactFilter2D.NoFilter
+        //loop through array of results of collider 2d, check if the tag(this.tranform.tag) is hideable
+        //if no hidable game over
+        //for death animation
+        Collider2D[] results = new Collider2D[10];
+        ContactFilter2D cf = new ContactFilter2D();
+        cf.NoFilter();
+        int cols = collide.OverlapCollider(cf, results);  ;
+        bool hiding = false;
+        for (int i = 0; i < cols; i++)
+        {
+            if (String.Equals(results[i].gameObject.tag,"Hideable"))
+            {
+                hiding = true;
+            }
+        }
+        if (hiding == false)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}
+//for title screen, you can use canvas instead of new scene

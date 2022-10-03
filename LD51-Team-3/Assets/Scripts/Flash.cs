@@ -8,8 +8,9 @@ using UnityEngine.UI;
 public class Flash : MonoBehaviour
 {
     public Image screen;
+    //public PlayerMovement p;
     //[SerializeField] FlashImage fi = null;
-   Rigidbody2D rb;
+ //  Rigidbody2D rb;
   //  Image i = null;
     // Start is called before the first frame update
    // private System.Timers.Timer timer;
@@ -19,8 +20,9 @@ public class Flash : MonoBehaviour
     {
         // timer = new (interval: 1000);
         // timer.start();
+       // p = GetComponent<PlayerMovement>();
         screen = GetComponent<Image>();
-       rb = GetComponent<Rigidbody2D>();
+     //  rb = GetComponent<Rigidbody2D>();
      //  Destroy(gameObject);
        timer = new Stopwatch();
        timer.Start();
@@ -31,6 +33,8 @@ public class Flash : MonoBehaviour
     {
         if (timer.Elapsed.Seconds >= 10){
             flashed = true;
+            // rb.checkDeath();
+         //   p.checkDeath();
             //rb.velocity= new Vector2(0, 30);
             // fi.StartFlashLoop(0.5f, 0, 1);
             timer = new Stopwatch();
