@@ -40,12 +40,12 @@ public class PlayerMovement : MonoBehaviour
         MovementState state; 
          if (dirX > 0f)
         { 
-            state = MovementState.running;
+            state = MovementState.walking;
             sprite.flipX = false;
         }
         else if (dirX < 0f)
         {
-            state = MovementState.running;
+            state = MovementState.walking;
             sprite.flipX = true;
         }
         else
@@ -53,8 +53,15 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.still;
         }
 
-        if ()
+        if (rb.velocity.y > .1f)
+        {
+            state = MovementState.jumping;
+        }
+        else if (rb.velocity.y < -.1f)
+        {
+            state = MovementState.falling;
+        }
 
-        anim.SetInteger("state", )
+        anim.SetInteger("state", (int)state) ;
     }
 } 
