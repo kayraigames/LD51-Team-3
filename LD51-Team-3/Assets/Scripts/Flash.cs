@@ -23,8 +23,8 @@ public class Flash : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (timer.Elapsed.Seconds > 10){
-            //rb.velocity= new Vector2(0, 10);
+        if (timer.Elapsed.Seconds >= 10){
+            rb.velocity= new Vector2(0, 30);
             timer = new Stopwatch();
             timer.Start();
         }
